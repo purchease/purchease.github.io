@@ -1,0 +1,12 @@
+{% if site.posts.size > 0 %}
+<ul>
+  {% for post in site.posts limit:3 %}
+  <li>
+    {{ post.date | date: site.theme_config.date_format }}
+    <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %} … <a href="billets">voir tous les billets</a>
+<br />
+<br />
