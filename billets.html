@@ -4,12 +4,12 @@ layout: default
 
 <a href="/">{{ site.theme_config.back_home_text }}</a>
 
-<h1>Par catégorie</h1>
+<h2>Par catégorie</h2>
 {% for category in site.categories %}
 <a href="/categories/{{ category.name }}">{{ category.name }}</a>
 {% endfor %}
 
-<h1>Tous les billets</h1>
+<h2>Tous les billets</h2>
 
 {% if site.posts.size > 0 %}
 <ul>

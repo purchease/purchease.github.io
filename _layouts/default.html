@@ -3,8 +3,15 @@
         {%- include head.html -%}
     <body>
     <main class="page-content" aria-label="Content">
-        <div class="wrapper">
-            {{ content }}
+        <div class="wrapper">      
+          <header>
+            <h1><a href="/">{{ site.title }}</a></h1>
+            {% if site.theme_config.show_description == true %}
+            <p>{{ site.description }}</p>
+            {% endif %}
+          </header>
+          
+          {{ content }}
         </div>
     </main>
 

@@ -2,17 +2,15 @@
 layout: default
 ---
 
-<a href="/">{{ site.theme_config.back_home_text }}</a>
+<a href="/billets">{{ site.theme_config.back_home_text }}</a>
 
-<h1>Tous les billets {{ page.name }}</h1>
+<h2>Tous les billets {{ page.name }}</h2>
 
-{% if site.posts.size > 0 %}
 <ul>
-  {% for post in site.categories[page.name] %}
+  {% for post in site.posts %} {% if post.categories contains page.name %}
   <li>
     {{ post.date | date: site.theme_config.date_format }} -
     <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
   </li>
-  {% endfor %}
+  {% endif %} {% endfor %}
 </ul>
-{% endif %}
