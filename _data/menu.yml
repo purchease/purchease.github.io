@@ -1,0 +1,21 @@
+entries:
+  - title: "nos derniers articles :"
+    post_list: true
+    url: false
+    entries: false
+  - title: "à propos :"
+    url: false
+    entries:
+      - title: PurchEase
+        url: purchease.com
+      - title: FidMarques
+        url: fidmarques.com
+      - title: 18 rue du Sentier, 75002 - Paris
+        url: false
+      - title: "rejoignez-nous :"
+        url: false
+        entries:
+          - title: postes ouverts
+            url: https://www.welcometothejungle.com/fr/companies/fidmarques
+          - title: écrivez-nous
+            url: mailto:jobs@purchease.com
