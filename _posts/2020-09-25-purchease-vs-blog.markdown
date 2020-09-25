@@ -17,10 +17,11 @@ Les articles se résument en général à l'approche suivante :
 - quelques regex
 - ET VOILA
 
-https://medium.com/@hasanat.abul/invoice-extraction-using-tesseract-ocr-2ec75813d59b
-https://www.azoft.com/blog/ocr-receipt-recognition/
+[la](https://medium.com/@hasanat.abul/)
+[la](https://medium.com/@hasanat.abul/invoice-extraction-using-tesseract-ocr-2ec75813d59b)
+[la](https://www.azoft.com/blog/ocr-receipt-recognition/)
 
-Cela construit l'idée recue selon laquelle le problème d'extraction de données des tickets est résolue : c'est faux. Certes les systèmes industriels comme celui de PurchEase suivent un déroulé assez similaire à ce qui est décrit ci-dessus, mais chacune des étapes ne peut se résoudre à quelques lignes de python ( ou autre ). Il s'agit bien de problèmes indépendants et complexes. Nous allons voir par la suite les écueils qui rendent la tâche complexe.
+Cela construit l'idée recue selon laquelle le problème d'extraction de données des tickets est résolu : c'est faux. Certes les systèmes industriels comme celui de PurchEase suivent un déroulé assez similaire à ce qui est décrit ci-dessus, mais chacune des étapes ne peut se résoudre à quelques lignes de python ( ou autre ). Il s'agit bien de problèmes indépendants et complexes. Nous allons voir par la suite les écueils qui rendent la tâche complexe.
 
 ## Idée reçue numéro 1 : un OCR fait le travail
 
@@ -37,13 +38,13 @@ L'OCR a fini son travail. On a du texte et sa position. On est loin de savoir ce
 
 Comme annoncé plus haut, le processus d'extraction que nous utilisons n'est pas fondamentalement différent de la structure de nos blogueurs. En revanche, c'est la difficulté qui est sous-estimée. Pourquoi ? Pour être _ROBUSTE_ à toutes les altération du document. Un OCR marche quasi parfaitement sur un document scanné, mais si on ambitionne de lire des tickets de caisse capturés par mobile, on se heurte a trois difficultés :
 
-- le document original est fragile et il n'est pas envisageable de refuser un ticket à un utulisateur sous prétexte qu'il la mis dans sa poche
+- le document original est fragile et il n'est pas envisageable de refuser un ticket à un utilisateur sous prétexte qu'il la mis dans sa poche
 
 {:refdef: style="text-align: center;"}
 ![altered_receipt_1](/assets/images/2020-09-25-purchease-vs-blog/altered_receipt_1.png){: width="120px"}
 {:refdef}
 
-- la capture par mobile n'est pas aussi bien controlée que sous un scanner : dérives d'éclairage, de flou et contrainte lié au ratio du ticket posent de vrais problèmes
+- la capture par mobile n'est pas aussi bien controlée que sous un scanner : dérives d'éclairage, de flou et contraintes liées au ratio du ticket posent de vrais problèmes
   {:refdef: style="text-align: center;"}
   ![altered_receipt_2](/assets/images/2020-09-25-purchease-vs-blog/altered_receipt_2.png){: width="120px" }
   {:refdef}
@@ -52,7 +53,7 @@ Comme annoncé plus haut, le processus d'extraction que nous utilisons n'est pas
   ![alter_receipt_3](/assets/images/2020-09-25-purchease-vs-blog/alter_receipt_3.png){: width="120px" }
   {:refdef}
 
-Si les techniques triviales peuvent en effet lire des tickets de caisse a peu près correctement, on ne peut s'en contenter si on souhaite limiter les contraintes à l'utilisateur final.
+Si les techniques triviales peuvent en effet lire des tickets de caisse a peu près correctement dans de bonnes conditions, on ne peut s'en contenter si on souhaite limiter les contraintes à l'utilisateur final.
 
 ## Idée reçue numéro 3 : "un peu de preprocessing, quelques regex et c'est gagné"
 
