@@ -1,18 +1,16 @@
 ---
 layout: post
-title:  "That's the way hmhm hmhm I stack it hmhm hmhm"
-date:   2020-09-25 09:18:34 +0200
+title: "That's the way hmhm hmhm I stack it hmhm hmhm"
+date: 2020-09-25 09:18:34 +0200
 author: david
 categories: architecture
+github_comments_issueid: 5
 ---
-
 
 Nous partîmes avec une application web monolithique; mais par un prompt renfort de fonctionnalité et de traffic, nous nous vîmes compter des applications dédiées à des sous-parties spécifiques de notre activité ( extraction du texte, extraction du contenu structuré, backoffice, analytiques ... ).
 
 L'un des choix que nous avons faits afin de spéarer les code bases a été de cesser de peu à peu abandonner rails pour le front ( hors besoin interne ) au profit d'une stack dédiée.
-Nous avons suivi le hype de Vue.js. 
-
-
+Nous avons suivi le hype de Vue.js.
 
 ![Vue.js](https://miro.medium.com/max/855/1*Kd7mrwqmrzyAudv8tS-OdQ.png){: width="300px"}
 
