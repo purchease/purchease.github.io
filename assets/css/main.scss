@@ -7,3 +7,24 @@
 code {
   white-space: pre-wrap;
 }
+.author {
+  h2,
+  h3 {
+    margin-top: 0;
+  }
+  img {
+    float: left;
+    width: 120px;
+    margin: 0px 15px 50px 0;
+  }
+}
+.author_details {
+  img {
+    width: 300px;
+  }
+  h2,
+  h3 {
+    text-align: center;
+    margin-top: 0;
+  }
+}
