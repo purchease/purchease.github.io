@@ -3,13 +3,19 @@ layout: default
 ---
 
 <a href="/">{{ site.theme_config.back_home_text }}</a>
+
+<h1>Par catégorie</h1>
+{% for category in site.categories %}
+<a href="/categories/{{ category.name }}">{{ category.name }}</a>
+{% endfor %}
+
 <h1>Tous les billets</h1>
 
 {% if site.posts.size > 0 %}
 <ul>
   {% for post in site.posts %}
   <li>
-    {{ post.date | date: site.theme_config.date_format }}
+    {{ post.date | date: site.theme_config.date_format }} -
     <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
   </li>
   {% endfor %}
