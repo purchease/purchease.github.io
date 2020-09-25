@@ -26,7 +26,7 @@ function ShowComments(repo_name, comment_id, page_id) {
         $("#gh-comments-list").append(
           "<form action='" +
             url +
-            "' rel='nofollow'> <input type='submit' value='Post a comment on Github' /> </form>"
+            "' rel='nofollow'> <input type='submit' value='Poster un commentaire via Github' /> </form>"
         );
       }
 
@@ -42,8 +42,8 @@ function ShowComments(repo_name, comment_id, page_id) {
           "'>" +
           comment.user.login +
           "</a></b>";
-        t += " posted at ";
-        t += "<em>" + date.toUTCString() + "</em>";
+        t += " posté le ";
+        t += "<em>" + date.toLocaleString("fr-FR") + "</em>";
         t += "<div id='gh-comment-hr'></div>";
         t += comment.body_html;
         t += "</div>";
@@ -64,7 +64,9 @@ function ShowComments(repo_name, comment_id, page_id) {
       }
     },
     error: function () {
-      $("#gh-comments-list").append("Comments are not open for this post yet.");
+      $("#gh-comments-list").append(
+        "Les commentaires ne sont pas encore ouverts pour ce post."
+      );
     },
   });
 }
