@@ -21,13 +21,25 @@ Prenons l'hypothèse suivante : supposons que les enseignes utilisent des maniè
 
 
 ### Le dictionnaire
-Le dictionnaire parait un bonne idée
+Le dictionnaire parait une bonne idée : à supposer que l'on a construit un corpus des mots rencontrés dans chacune des enseignes, on comptera les mots présents dans un ticket candidat issus des différents dictionnaire.
+
+Le souci avec cette approche : il est très très bon notre OCR, malgré tout, il n'est pas exclu qu'il y ait quelques substitutions. En comparant les mots entiers on ne sera pas robuste au bruit. 
 
 ### Les lettres
-Les lettres nous préservent de l'écueil plus haut. En revanche, on n'est pas en train de comparer du danois et de l'espagnol/ Les langues de ticket de caisse sont des dérivées deu francais
+Les lettres nous préservent de l'écueil plus haut : leur nombre est plus élevé et statistiquement les erreurs seront noyées dans la masse. En revanche, on n'est pas en train de comparer du danois et de l'espagnol ; les langues de ticket de caisse sont des dérivées du francais et la fréquence d'apparition des lettres risque de ne pas être suffisamment discriminante. 
 
 ### Et au milieu, coule un ngram
+On va donc chercher une approche 'au milieu' : on va considérer l'ensemble des successions de n lettres, qu'on appelera n-grams par la suite. 
+Avec n=3, ca donne : 
 
+```ruby
+def trigrams(str)
+    str.chars.each_cons(3).each_with_object(Array.new) { |v,a| a << v.join }
+end
+
+trigrams('HELLO WORLD')
+> ["HEL", "ELL", "LLO", "LO ", "O W", " WO", "WOR", "ORL", "RLD"] 
+```
 
 
 ## On recense
