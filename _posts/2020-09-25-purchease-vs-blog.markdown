@@ -31,7 +31,7 @@ En vert est rendu le résultat de l’OCR.
 L'OCR a fini son travail. On a du texte et sa position. On est loin de savoir ce qui a été acheté !
 
 
-### Idée reçue numéro 2 : "si le document est de qualité médiocre... et bien tant pis !"
+## Idée reçue numéro 2 : "si le document est de qualité médiocre... et bien tant pis !"
 Comme annoncé plus haut, le processus d'extraction que nous utilisons n'est pas fondamentalement différent de la structure de nos blogueurs. En revanche, c'est la difficulté qui est sous-estimée. Pourquoi ? Pour être *ROBUSTE* à toutes les altération du document. Un OCR marche quasi parfaitement sur un document scanné, mais si on ambitionne de lire des tickets de caisse capturés par mobile, on se heurte a trois difficultés :
 - le document original est fragile et il n'est pas envisageable de refuser un ticket à un utulisateur sous prétexte qu'il la mis dans sa poche
 
