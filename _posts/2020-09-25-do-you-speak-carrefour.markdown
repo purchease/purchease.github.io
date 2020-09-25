@@ -45,7 +45,7 @@ trigrams('HELLO WORLD')
 ## Construction des caractéristiques langage
 En supposant que l'on dispose d'extraits annotés de ticket correctement classés, on construira les corpus
 
-```
+```ruby
 def trgm_cnt labels
     trigrams(labels).each_with_object(Hash.new(0)) do |trgm, hh|
         hh[trgm] += 1
@@ -67,7 +67,7 @@ Résumé des épisodes précédents :  on a une référence de la fréquence des
 Au fait, c'est quoi le plus proche ? Il nous reste à définir la distance entre deux caractéristiques. Le souci : on compare un indicateur construit sur  des centaines de tickets à un indicateur construit sur quelques lignes. Il faut rendre les choses comparables.
 Voilà la solution la plus robuste que nous proposons : on va comparer les *rangs* des trigrammes classés par ordre de fréquence dans le référentiel et dans le candidat.
 
-```
+```ruby
 def compare candidate_freq, ref_freq
     # sort candidate trigrams
     ranked_in_candidate = candidate_freq.sort_by{|k,v| v}.reverse.keys
@@ -90,8 +90,6 @@ end
 ## Résultats
 Le code est disponible [ici](https://github.com/purchease/purchease.github.io/blob/master/code/2020-09-25-do-you-speak-carrefour/classifier.rb) 
 
-
-## Implémentation
 
 
 
