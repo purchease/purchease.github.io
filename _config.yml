@@ -75,7 +75,7 @@ sass:
   style: compressed
 
 collections:
-  authors:
+  auteurs:
     output: true
   categories:
     output: true

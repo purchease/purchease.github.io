@@ -4,12 +4,12 @@ layout: default
 
 <div class="author_details">
   <a href="/auteurs">{{ site.theme_config.back_home_text }}</a>
-  <h2><a href="{{ page.url }}">{{ page.name }}</a></h2>
+  <h2>{{ page.name }}</h2>
   <h3>{{ page.position }}</h3>
   <img src="{{ page.avatar_url }}" />
   <p>{{ page.description }}</p>
 
-  <h2>Publications</h2>
+  <h3>Publications</h3>
   {% assign filtered_posts = site.posts | where: 'author', page.short_name %} {%
   if filtered_posts.size > 0 %}
   <ul>
