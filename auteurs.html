@@ -6,7 +6,7 @@ layout: default
 <h1>Nos auteurs</h1>
 
 <ul>
-  {% for author in site.auteurs %}
+  {% assign authors = site.auteurs | sort: 'name' %} {% for author in authors %}
   <li class="author">
     <h2><a href="{{ author.url }}">{{ author.name }}</a></h2>
     <h3>{{ author.position }}</h3>

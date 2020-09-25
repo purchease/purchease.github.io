@@ -4,6 +4,7 @@ title: "Association Polymorphique"
 date: 2020-09-25 09:18:34 +0200
 author: david
 categories: rails
+github_comments_issueid: 4
 ---
 
 ## Motivation

@@ -79,3 +79,5 @@ collections:
     output: true
   categories:
     output: true
+
+github_comments_repository: purchease/purchease.github.io
