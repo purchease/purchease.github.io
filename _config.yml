@@ -29,6 +29,7 @@ github_username: jekyll
 
 # Build settings
 theme: no-style-please
+remote_theme: riggraz/no-style-please
 
 plugins:
   - jekyll-feed
@@ -68,3 +69,7 @@ theme_config:
   back_home_text: ".." # customize text for homepage link in post layout
   date_format: "%d/%m/%Y -" # customize how date is formatted
   show_description: true # show blog description in home page
+
+sass:
+  sass_dir: _sass
+  style: compressed
