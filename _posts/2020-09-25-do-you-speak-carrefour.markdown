@@ -5,7 +5,7 @@ date:   2020-09-25 09:18:34 +0200
 author: david
 categories: algo
 ---
-
+## Intro
 Un point important dans l'extraction de données d'un ticket de caisse est de reconnaître l'origine de ce ticket.
 Facile, il suffit de reconnaitre le logo !
 Oui mais :
@@ -64,10 +64,30 @@ end
 
 ## Tenir la distance
 Résumé des épisodes précédents :  on a une référence de la fréquence des trigrams pour un candidat et pour chacune des enseignes. Maintenant, la compétition est ouverte, que le plus proche gagne !
-Au fait, c'est quoi le plus proche ? Il nous reste à définir la distance entre deux caractéristiques. Le souci : on compare un indicateur construit sur  des centaines de tickets à un indicateur construit sur quelques lignes. Il faut rendre les choses comparables. 
-Voilà la solution la plus robuste que nous proposons :
+Au fait, c'est quoi le plus proche ? Il nous reste à définir la distance entre deux caractéristiques. Le souci : on compare un indicateur construit sur  des centaines de tickets à un indicateur construit sur quelques lignes. Il faut rendre les choses comparables.
+Voilà la solution la plus robuste que nous proposons : on va comparer les *rangs* des trigrammes classés par ordre de fréquence dans le référentiel et dans le candidat.
 
-## Résultat
+```
+def compare candidate_freq, ref_freq
+    # sort candidate trigrams
+    ranked_in_candidate = candidate_freq.sort_by{|k,v| v}.reverse.keys
+
+    ranked_as_in_ref = candidate_freq.keys.sort_by{|trg|  ref_freq[trg] }.reverse
+
+    # index_rank_by_trg
+    index_ranked_ref = {}
+    ranked_as_in_ref.each_with_index{|trg, rk| index_ranked_ref[trg]= idx  }
+
+    dist = 0
+    ranked_in_candidate.each_with_index do |trg, rank|
+        dist+= (rank - ranked_as_in_ref[trg]).abs
+    end
+end
+```
+
+
+
+## Résultats
 
 
 ## Implémentation
