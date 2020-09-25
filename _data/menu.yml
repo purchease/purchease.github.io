@@ -12,12 +12,12 @@ entries:
         url: https://purchease.com
       - title: fidmarques
         url: https://fidmarques.com
-      - title: "rejoignez-nous :"
-        url: false
-        entries:
-          - title: postes ouverts
-            url: https://www.welcometothejungle.com/fr/companies/fidmarques/jobs
-          - title: écrivez-nous par mail
-            url: mailto:jobs@purchease.com
-          - title: 18 rue du Sentier, 75002 - Paris
-            url: https://goo.gl/maps/XDt9WTwYWeTYr9fU7
+  - title: "rejoignez-nous :"
+    url: false
+    entries:
+      - title: postes ouverts
+        url: https://www.welcometothejungle.com/fr/companies/fidmarques/jobs
+      - title: écrivez-nous par mail
+        url: mailto:jobs@purchease.com
+      - title: 18 rue du Sentier, 75002 - Paris
+        url: https://goo.gl/maps/XDt9WTwYWeTYr9fU7
