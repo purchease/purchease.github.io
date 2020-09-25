@@ -73,3 +73,7 @@ theme_config:
 sass:
   sass_dir: _sass
   style: compressed
+
+collections:
+  authors:
+    output: true
