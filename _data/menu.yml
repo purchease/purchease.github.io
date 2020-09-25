@@ -1,14 +1,14 @@
 entries:
-  - title: "nos derniers articles :"
+  - title: "nos derniers billets :"
     post_list: true
     url: false
     entries: false
   - title: "à propos :"
     url: false
     entries:
-      - title: PurchEase
+      - title: purchease
         url: purchease.com
-      - title: FidMarques
+      - title: fidmarques
         url: fidmarques.com
       - title: 18 rue du Sentier, 75002 - Paris
         url: false
