@@ -4,6 +4,11 @@ layout: default
 
 <a href="/billets">{{ site.theme_config.back_home_text }}</a>
 
+<h2>Par catégorie</h2>
+{% for category in site.categories %}
+<a href="/categories/{{ category.name }}">{{ category.name }}</a>
+{% endfor %}
+
 <h2>Tous les billets {{ page.name }}</h2>
 
 <ul>
