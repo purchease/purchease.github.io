@@ -13,7 +13,7 @@ L’obtention d’une base annotée est particulièrement coûteuse car elle fai
 
 
 ## ICDAR
-
+ICDAR (International Conference on Ducoument Analysis and Recognition) c'est comme son nom l'indique... En pratique, des chercheurs du monde entier soumettent leur article de recherche, et ceux plebiscités par les relecteurs sont présentés lors d'un conférence qui se tient tous les deux. J'ai eu la chance d'y aller avec un premier article en 2017 ( c'était à Kyoto). Un deuxième article a été selectionné pour l'édition 2019. C'est celui dont parle ce billet, et j'ai eu la chance de pouvoir le présenter à Sydney. 
 
 
 ## La publication en résumé
