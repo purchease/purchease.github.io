@@ -6,11 +6,13 @@ entries:
   - title: "à propos :"
     url: false
     entries:
+      - title: genèse
+        url: architecture/2020/09/25/genese.html
       - title: nos auteurs
         url: auteurs
-      - title: purchease
+      - title: purchease.com
         url: https://purchease.com
-      - title: fidmarques
+      - title: fidmarques.com
         url: https://fidmarques.com
   - title: "rejoignez-nous :"
     url: false

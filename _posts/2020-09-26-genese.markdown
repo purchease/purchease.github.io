@@ -1,0 +1,48 @@
+---
+layout: post
+title: "Genèse"
+date: 2020-09-25 23:00:01 +0200
+author: ronnie
+categories: architecture
+github_comments_issueid: 7
+---
+
+Une à deux fois par an, PurchEase [se met au vert](https://fidmarques.com/les-coulisses-de-fidmarques) pendant douze jours loin de Paris pour un peu de team-building, mais aussi mettre de l'huile de coude avec de sortir de grosses features produit ou terminer celles qui trainent en longueur. Au milieu de ces deux semaines de travail nous organisons un hackathon pour développer de nouvelles idées autour de notre produit et en profitons pour expérimenter des technos nouvelles (pour celles et ceux qui découvrent en tout cas).
+
+C'est ainsi qu'est né ce blog en septembre 2020 où [nous](/auteurs) nous sommes dit qu'il serait sympa d'expliquer au travers de quelques billets au ton léger comment nous réfléchissons, travaillons et donc finalement codons.
+
+## Powered by Jekyll
+
+Sans vouloir lui faire injure, utiliser le roi Wordpress en 2020 c'est surfait, trop lourd, trop lent… En tout cas pour nos besoins en blog de développeurs. Il y a quelques années nous aurions peut-être même fait pire en l'écrivant from scratch avec le ~~merveilleux~~ scaffold de Rails, techno qui nous est pourtant très chère, encore aujourd'hui.
+
+Non… En 2020, ce que tu veux que c'est que ton blog réponde en moins de temps qu'il faut pour prononcer le mot blog. C'est la que [Jekyll](https://jekyllrb.com/) entre en jeu ! Bon… On ne va pas jouer aux faux hipsters et dire que ceci est une révolution. Le produit est mûr depuis plus d'une décennie à date, et même leader dans son domaine.
+
+En gros, sans vouloir refaire sa page Wikipedia, Jekyll nous permet de générer des pages web statiques assez rapidement pour les héberger sur un serveur. Pas de base de données ronflante derrière, du contenu et juste du contenu, facilité par Markdown et Liquid qui sont embarqués avec le projet.
+
+## … et GitHub
+
+Ce qui est encore plus cool avec Jekyll, c'est que ça se déploie un éclair sur [GitHub Pages](https://pages.github.com/). En fait, il n'y a quasiment **rien** à faire pour peu que vous ayiez eu l'idée bien sentie de versionner votre site et de l'héberger sur GitHub… À la base, on a nommé ce projet `tech_blog` chez le géant racheté par Microsoft. Finalement il a suffi de le renommer `purchease.github.io` car GitHub Pages fournit gratuitement un site pour tout repo portant le nom `<organization_name>.github.io`. Et bim ! Un commit, un push sur master, et votre site est en ligne sur l'adresse correspondante.
+
+## … et encore Github !
+
+Jekyll c'est bien, mais pour un blog c'est quand même embêtant de ne pas pouvoir générer de contenu dynamique comme pour servir… la section commentaires ! Bah ouais, un blog sans fonction commentaires c'est un peu comme si Roméo n'aimait plus Virginie… Historiquement il y a eu un consensus pour utiliser Disqus, mais en fait au secours… Disqus c'est une centaine d'appels réseaux bourrés d'ad-tracking et d'entrave à la vie privée en veux-tu en voilà.
+
+Là encore nous n'avons pas réinventé la roue et on est de très bons exécutants. Merci à Dave Compton et son superbe [tuto](https://dc25.github.io/myBlog/2017/06/24/using-github-comments-in-a-jekyll-blog.html) pour se servir habilement du système de GitHub issues pour. En gros : on crée une issue sur un repo GitHub (typiquement celui qui sert pour ce blog), et cela va servir de [canvas](https://github.com/purchease/purchease.github.io/issues/7?#new_comment_field) pour produire les commentaires. Ceux-ci sont ensuite lus via un snippet JS en se servant de l'id renseigné en [Front matter](https://jekyllrb.com/docs/front-matter/) de ce billet afin de faire le lieu avec l'issue.
+<br/>Le tuto fonctionne comme sur des roulettes, on a juste eu à adapter l'intégration à notre feuille de style et à traduire les boutons, labels et affichages de la date.
+
+Alors bien entendu, ce n'est pas une solution idéale de passer par un tiers pour écrire un commentaire, d'autant plus qu'il faut posséder un compte GitHub. Mais on s'est dit que notre auditorat moyen possède un compte GitHub, alors en conclusion cela fait largement le taf !
+
+Sinon on a exploré quelques alternatives pour une intégration plus smooth :
+
+- [Hyvor Talk](https://talk.hyvor.com/), mais ils ne proposent plus de plan gratuit
+- [StaticMan](https://staticman.net/), peut-être une très belle solution hébergeable sur Heroku gratuitement
+
+## No style, please !
+
+Bon… On a dit tout à l'heure qu'on ne jouait pas aux faux hipsters, en revanche on a quand même fait les gros puristes avec ce design minimaliste [No style, please !](https://riggraz.dev/no-style-please/) à souhaits que nous avons emprunté pour donner une coque à ce blog.
+
+À partir de là je présuppose que vous avez déjà pris Jekyll en main, alors petite astuce si vous en êtes au choix d'un thème custom pour aller sur Github Pages. Dans le fichier de config on est censés renseigner le thème via un noeud `theme`. En revanche Github Pages n'est prêt qu'à servir qu'une liste réduite de thèmes pour Jekyll. Pour installer un custom il faut utiliser le noeud `remote-theme` avec le nom du repo GitHub. Ce qui est embêtant c'est que GitHub émet un warning si l'on utilise le noeud `theme` que l'on veut pourtant conserver, `remote-theme` n'étant pas disponible en local. Et l'on ne veut surtout pas avoir à switcher entre les deux entre chaque phase de test et de déploiment. La solution s'appelle [jekyll-remote-theme](https://github.com/benbalter/jekyll-remote-theme) et permet d'utiliser uniquement `remote-theme` dans les deux scénarii :)
+
+## Conclusion
+
+??? Merci d'avoir lu jusque-là et à bientôt sur le blog. N'hésitez pas à interragir avec nous, et oui on peut poster des commentaires :p
