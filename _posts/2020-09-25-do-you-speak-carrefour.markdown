@@ -88,6 +88,7 @@ end
 
 
 ## Résultats
+Le code est disponible [ici](https://github.com/purchease/purchease.github.io/blob/master/code/2020-09-25-do-you-speak-carrefour/classifier.rb) 
 
 
 ## Implémentation
