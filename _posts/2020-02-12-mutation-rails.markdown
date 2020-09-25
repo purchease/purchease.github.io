@@ -70,10 +70,6 @@ Comme on a utilisé des strings, on a envie d'avoir les 'vrais objets', visibles
 
 ```ruby
 
-  def reg_ex
-    @reg_ex ||= Regex.new(reg_exp_as_string)
-  end
-
   def start_date
     @start_date ||= start_date_as_string.to_date
   end
@@ -87,54 +83,77 @@ On pourra alors joyeusement utiliser les méthodes reg_ex / start_date / end_dat
 
 
 ### Les requêtes
+On va chercher à récuperer l'ensemble des dépenses sur les libellés selectionnés, et on voudra normaliser par la somme des achats enregistrés sur la même période : 
 
 ```ruby
-  def spendings_by_month
-     @spendings_by_month ||= Purchase.joins(line: :denomination).where('denominations.value ~* ?', reg_ex).group(:user_id).each_with_object(Hash.new{|hh,kk| hh[kk] = Hash.new }).find_each do |purchase, h|
+   def spendings_by_month
+     @spendings_by_user_id ||= Purchase.includes(:receipt).joins([:receipt, :line]).where("receipts.created_at between ? and ?", start_date, end_date).where('lines.denomination_id in (?)', denom_ids).each_with_object(Hash.new(0)) do |purchase, h|
        h[purchase.bought_at.strftime('%Y-%m')] += purchase.unit_price_value * purchase.quantity
     end
   end
+
+  def denom_ids
+    @denom_ids ||= Denomination.where('value ~* ?', regular_expression).pluck(:id)
+  end
+
+
+  def total_recorded_by_user_id
+    @total_recorded_by_user_id ||= Receipt.where(' created_at between ? and ? ', start_date, end_date).select('total, created_at').each_with_object(Hash.new(0)) do |rcpt, h|
+      h[rcpt.created_at.strftime('%Y-%m')] += (rcpt.total || 0).to_f
+    end
+  end
+
 ```
 
 
-### L'execution 
+### L'execution
+On fait le minumum dans la méthode principale pour être lisible : 
+```ruby
+  def execute
+    share = {}
+    total_recorded_by_user_id.each do |m, spent|
+      share[m] = spendings_by_month[m] / spent
+    end
+    share
+  end
+```
+
+Et on lance :
 
 ```ruby
-RetrieveSpendingsByMonth.run! start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string: 'GILET?JAUNE'
+RetrieveSpendingsByMonth.run! start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string: '\\mGILE?T?\\M.*(REFL|ORA|JAU|SECU)'
 ```
 
+Au passage, qu'apprend-on ? Que les ventes de gilets jaunes ont curieusement augmenté en novemebre / décembre 2018  !
 
+![gilets_evo](/assets/images/2020-02-12-mutation-rails/gilets_evo.png)
 
 ## Icing on the cake : Debug
 Mainteant, pourquoi cet effort de design paie-t-il ?
 Grâce à la memoization et au pattern de commande isolé dans une classe, je peux très facilement tester de manière unitaire mon code : 
 ( ici avec pry , mais irb fonctionnerait aussi )
 
-
 ```ruby
-pry RetrieveSpendingsByMonth.new start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string: 'GILET?JAUNE'
+pry RetrieveSpendingsByMonth.new start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string:  '\\mGILE?T?\\M.*(REFL|ORA|JAU|SECU)'
 >
 ```
 Je suis dans le contexte de ma mutation, je peux appeler mes méthodes : 
 
 ```ruby
-pry RetrieveSpendingsByMonth.new start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string: 'GILET?JAUNE'
+pry RetrieveSpendingsByMonth.new start_date: '2018-06-01', end_date: '2019-06-01', reg_exp_as_string: '\\mGILE?T?\\M.*(REFL|ORA|JAU|SECU)'
 > start_date
 
 > spendings_by_month
 ```
-Inutile de jouer des initialisations, le pattern de memoization initialize ce dont j'ai besoin lors du premier appel !
-
-
-
-
+Inutile de jouer des initialisations, le pattern de memoization initialize ce dont j'ai besoin lors du premier appel.
 
 
 ## Cherry on the iced cake : AsyncMutation
 
-Parfois ces commandes peuvent être des calculs et des requêtes couteuses qu'on a envie d'executer en background (sur un job asynchrone)
+Parfois ces commandes peuvent être des calculs et des requêtes couteuses qu'on a envie d'exécuter en background (sur un job asynchrone).
 
-```
+
+```ruby
 class MutationsAsyncCommand < Mutations::Command
   @queue = :asynctasks
 
@@ -145,7 +164,8 @@ class MutationsAsyncCommand < Mutations::Command
     def self.perform(*args)
         run!(*args)
     end
-            def validate_yield!(*args)
+    private
+    def validate_yield!(*args)
       validation_outcome = validate(*args)
       if validation_outcome.success?
         yield
@@ -157,13 +177,16 @@ class MutationsAsyncCommand < Mutations::Command
 end
 ```
 
-avec la légeère modification 
+avec la légère modification suivante :
 
 
-```
+```ruby
 class RetrieveSpendingsByMonth < MutationsAsyncCommand
-
+ #
+end
 ```
 
-- je béneficie d'une méthode run_async / run_async 
-- les validations se font avant la mise en queue du job ! 
+- je béneficie d'une méthode run_async! qui va mettre le job sur une queue. Un worker pourra la prendre et l'executer en tâche de fond.
+- les validations se font avant la mise en queue du job ! Si mes paramètres sont incorrects, l'exception sera léevé à la mise en file d'attente et non lors de l'execution asynchrone.
+
+

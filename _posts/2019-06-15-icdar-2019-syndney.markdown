@@ -26,15 +26,15 @@ Nous proposons une méthode visant à générer des images synthétiques qui res
 - le contenu (le texte, la police du texte)
 - le style (des déformations, bruits)
 
-![training_sample](/assets/images/2019-06-15-icdar-2019-sydney.markdown/training_sample.png)
+![training_sample](/assets/images/2019-06-15-icdar-2019-sydney/training_sample.png)
 
 En extrayant le style des images réelles et appliquant à une image binaire, nous pouvons générer des images réalistes.
 
 Nous nous basons sur les méthodes de GAN (Generative Adversarial Networks), plus précisément, les modèles Dual-GAN et MUNIT .
 
-![dual_gan](/assets/images/2019-06-15-icdar-2019-sydney.markdown/dual_gan.png)
+![dual_gan](/assets/images/2019-06-15-icdar-2019-sydney/dual_gan.png)
 
-![munit](/assets/images/2019-06-15-icdar-2019-sydney.markdown/munit.png)
+![munit](/assets/images/2019-06-15-icdar-2019-sydney/munit.png)
 
 Le principe général est le suivant : un réseau de neurone est entrainé à générer des images synthétiques : il utilisera pour cela le résultat de l'apprentissage construit sur des images réelles.
 L'autre réseau de neurones est entrainé à discriminer les images synthétiques des images réelles.
@@ -48,8 +48,8 @@ Voici les résultats d'image synthétiques :
 - Ligne B : une image synthétisée par MUNIT
 - Ligne C : une image synthétisée par Dual-GAN
 
-![generated_1](/assets/images/2019-06-15-icdar-2019-sydney.markdown/generated_1.png)
-![generated_2](/assets/images/2019-06-15-icdar-2019-sydney.markdown/generated_2.png)
+![generated_1](/assets/images/2019-06-15-icdar-2019-sydney/generated_1.png)
+![generated_2](/assets/images/2019-06-15-icdar-2019-sydney/generated_2.png)
 
 ### Validation
 
