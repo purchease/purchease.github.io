@@ -28,7 +28,7 @@ twitter_username: jekyllrb
 github_username: jekyll
 
 # Build settings
-remote_theme: riggraz/no-style-please
+remote_theme: riggraz/no-style-please@v0.3.1
 
 plugins:
   - jekyll-feed
